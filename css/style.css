@@ -1,0 +1,9 @@
+body {
+    width: 90%;
+    margin: 0px auto;
+    padding-bottom: 0.5em;
+}
+
+.control-group {
+    margin-top: 0.8em;
+}
