@@ -14,12 +14,12 @@ require_once (__DIR__ . '/src/Model/Player.php');
       <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
-  <div class="container col-md-2">
-      <div class="row">
-          <img src="img/ping_pong.png" class="img-responsive" alt="Ping Pong Front">
+  <div class="container col-md-3">
+      <div class="row container-fluid">
+          <img src="img/ping_pong.png" class="center-block img-responsive" alt="Ping Pong Front">
       </div>
-      <div class="row">
-          <form method="GET" action="lookupPlayer.php">
+      <div class="row container-fluid">
+          <form method="GET" class="container-fluid" action="lookupPlayer.php">
               <legend>Login</legend>
               <div class="form-group">
                 <label class="sr-only" for="rfid">RFID</label>

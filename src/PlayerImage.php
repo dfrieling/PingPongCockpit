@@ -10,8 +10,11 @@ use FileTransfer\TransferInterface;
 
 abstract class PlayerImage
 {
+    const IMAGE_FILENAME_PATTERN = 'rfid%d.png';
+
     protected $saveToLocalPrefix = null;
     protected $saveToRemotePrefix = null;
+
     /** @var TransferInterface $transfer */
     private $transfer;
     private $player;
@@ -56,7 +59,7 @@ abstract class PlayerImage
         if (empty($this->player->getId())) {
             throw new TransferException('player has no name');
         }
-        return $this->saveToLocalPrefix . 'rfid' . $this->player->getRfid() . '.png';
+        return $this->saveToLocalPrefix . sprintf(self::IMAGE_FILENAME_PATTERN, $this->player->getRfid());
     }
 
     /**

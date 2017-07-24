@@ -79,7 +79,7 @@ uploadImages();
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">Gender:</label>
+                    <label class="control-label">Gender</label>
                     <p style="margin: 0px;">
                         <input type="radio" name="gender" id="female"
                                value="female" <?php if (empty(getPlayer()->getGender()) || getPlayer()->getGender() == 'female') echo 'checked' ?>>
@@ -171,8 +171,8 @@ function getPlayer()
     $player = new NullPlayer();
 
     if (empty($_REQUEST['rfid'])) {
-        addUserMessage(MESSAGE_LEVEL_ERROR, 'no user specified, redirecting back to the login page');
-        header("refresh:5;url=index.php");
+        addUserMessage(MESSAGE_LEVEL_ERROR, 'no user specified, redirecting back to the login page...');
+        header("refresh:3;url=index.php");
         return $player;
     }
 
@@ -225,7 +225,6 @@ function getPlayerImageWinning($player)
 
 function uploadImages()
 {
-    //822 x 654
     if (!empty($_FILES['imgPlaying']['tmp_name'])) {
         (new PlayerImagePlaying(getPlayer(), new \FileTransfer\SshTransfer()))->upload($_FILES['imgPlaying']['tmp_name']);
     }
@@ -240,7 +239,10 @@ function updatePlayer()
         return;
     }
 
-    $newPlayer = new Player(null, $_REQUEST['rfid'], $_REQUEST['name'], $_REQUEST['name'] . '.png', $_REQUEST['gender']);
+    $newPlayer = new Player(
+        null, $_REQUEST['rfid'], $_REQUEST['name'],
+        sprintf(PlayerImage::IMAGE_FILENAME_PATTERN, $_REQUEST['rfid']), $_REQUEST['gender']
+    );
 
     try {
         (new PlayerMysql())->save($newPlayer);

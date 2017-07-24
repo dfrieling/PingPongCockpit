@@ -1,11 +1,12 @@
 <?php
 
-require_once('Model/Player.php');
-require_once('PlayerImage.php');
-require_once('FileTransfer/TransferInterface.php');
+require_once(__DIR__ . '/Model/Player.php');
+require_once(__DIR__ . '/PlayerImage.php');
+require_once(__DIR__ . '/FileTransfer/TransferInterface.php');
+require_once(__DIR__ . '/../config/pingpong_server_config.php');
 
 class PlayerImagePlaying extends PlayerImage
 {
-    protected $saveToLocalPrefix = '/tmp/pingpongImgPlayingId';
-    protected $saveToRemotePrefix = '/storage/temp/Ping-Pong/ui/public/img/players/';
+    protected $saveToLocalPrefix = '/tmp/pingpongImgPlaying';
+    protected $saveToRemotePrefix = PINGPONG_INSTALLATION_PATH . '/ui/public/img/players/';
 }

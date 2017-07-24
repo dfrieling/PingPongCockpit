@@ -7,7 +7,7 @@ use Exception\TransferInitException;
 
 require_once(__DIR__ . '/../Exception/TransferException.php');
 require_once(__DIR__ . '/../Exception/TransferInitException.php');
-require_once(__DIR__ . '/../../config/ssh_config.php');
+require_once(__DIR__ . '/../../config/pingpong_server_config.php');
 
 class SshTransfer implements TransferInterface
 {
@@ -56,8 +56,6 @@ class SshTransfer implements TransferInterface
         if (!ssh2_scp_send($this->session, $from, $to)) {
             throw new TransferException("could not upload $from to $to");
         }
-
-        move_uploaded_file($from, '/tmp/TrangLocal.png');
     }
 
     /**
